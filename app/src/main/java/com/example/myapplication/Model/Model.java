@@ -3,23 +3,23 @@ package com.example.myapplication.Model;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
 
+// The model of the application part of the MVVM architecture
 public class Model {
     private Socket mySocket;
     private PrintWriter out;
     private final ExecutorService executor;
     private boolean isConnect;
 
+    //constructor
     public Model() {
-        executor = Executors.newSingleThreadExecutor();
+        executor = Executors.newSingleThreadExecutor(); // single thread pool
         isConnect = false;
     }
 
+    // The function gets string and value which represent a setting to thr FG
     public void setAttribute(double var, String str) {
         executor.execute(() -> {
             out.print(str + var + "\r\n");
@@ -27,51 +27,14 @@ public class Model {
         });
     }
 
-    /* public void setElevator(Double var) {
-         executor.execute(new Runnable() {
-             @Override
-             public void run() {
-
-                 out.print("set /controls/flight/elevator " + var + "\r\n");
-                 out.flush();
-             }
-         });
-     }
-
-     public void setAileron(Double var) {
-         executor.execute(new Runnable() {
-             @Override
-             public void run() {
-                 out.print("set /controls/flight/aileron " + var + "\r\n");
-                 out.flush();
-             }
-         });
-     }
-
-     public void setRudder(Double var) {
-         executor.execute(new Runnable() {
-             @Override
-             public void run() {
-                 out.print("set /controls/flight/rudder " + var + "\r\n");
-                 out.flush();
-             }
-         });
-     }
-
-     public void setThrottle(Double var) {
-         executor.execute(()->{
-                 out.print("set /controls/engines/current-engine/throttle " + var + "\r\n");
-                 out.flush();
-
-         });
-     }
- */
+    // The function opens socket with the parameters it gets ip and port
+    // and initialize the attributes for new flight
     public void connect(String ip, int port) {
-        System.out.println("my ip is:" + ip + "my port is: " + port);
         executor.execute(() -> {
             try {
                 mySocket = new Socket(ip, port);
                 out = new PrintWriter(mySocket.getOutputStream(), true);
+                //  initialize the attributes only once
                 if (!isConnect) {
                     isConnect = true;
                     setAttribute(0, "set /controls/flight/aileron ");
