@@ -7,7 +7,7 @@
     android:padding="16dp"
     tools:context=".View.MainActivity">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/ip"
         android:layout_width="67dp"
         android:layout_height="52dp"
@@ -29,10 +29,13 @@
         android:layout_marginLeft="2dp"
         android:layout_marginTop="121dp"
         android:text="PORT"
-        android:textSize="30sp" />
+        android:textSize="30sp" /-->
 
     <EditText
         android:id="@+id/ed"
+        android:hint = "@string/ip_adress"
+        android:textSize="24sp"
+        android:textStyle="bold"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -42,10 +45,13 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="51dp"
         android:layout_marginRight="51dp"
-        android:textStyle="bold" />
+         />
 
     <EditText
         android:id="@+id/ed2"
+        android:hint = "@string/port"
+        android:textSize="24sp"
+        android:textStyle="bold"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -54,8 +60,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="122dp"
         android:layout_marginEnd="45dp"
-        android:layout_marginRight="45dp"
-        android:textStyle="bold" />
+        android:layout_marginRight="45dp" />
 
     <Button
         android:id="@+id/button"
@@ -73,12 +78,9 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="67dp"
-        android:layout_height="52dp"
-
+        android:layout_width="98dp"
+        android:layout_height="51dp"
         android:layout_marginTop="221dp"
-        android:layout_marginEnd="257dp"
-        android:layout_marginRight="257dp"
         android:text="0%"
         android:textSize="30sp" />
 
@@ -92,13 +94,12 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginRight="52dp"
-        android:layout_marginBottom="403dp"
-        android:progress="50"
-        />
+        android:layout_marginStart="82dp"
+        android:layout_marginLeft="82dp"
+        android:layout_marginEnd="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginBottom="418dp"
+        android:progress="50" />
 
     <SeekBar
         android:id="@+id/seekBarThrottle"

@@ -12,74 +12,69 @@ import android.widget.TextView;
 import com.example.myapplication.Model.Model;
 import com.example.myapplication.R;
 import com.example.myapplication.View.Joystick;
+import com.example.myapplication.ViewModel.ViewModel;
 
 public class MainActivity extends AppCompatActivity {
-    private SeekBar seekBarThrottle, seekBarRudder;
     private TextView textView;
-    private Model model;
-    private Joystick joystick;
-    private Button button;
-    private EditText editText;
+    private ViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        viewModel = new ViewModel(new Model());
 
         setContentView(R.layout.activity_main);
 
-        model = new Model();
-        joystick = (Joystick) findViewById(R.id.myJoystick);
+        Joystick joystick = (Joystick) findViewById(R.id.myJoystick);
         joystick.myOnChange = (a, e) -> {
-            System.out.println("a: "+(a * 2 - 500) / 360+", e: "+(e * 2 - 500) / 360);
-
-            model.setAileron((a * 2 - 500) / 360);
-            model.setElevator((e * 2 - 500) / 360);
+            System.out.println("a: " + (a * 2 - 500) / 360 + ", e: " + (e * 2 - 500) / 360);
+            viewModel.setAileron((a * 2 - 500) / 360);
+            viewModel.setElevator((e * 2 - 500) / 360);
         };
+
         textView = (TextView) findViewById(R.id.textView);
-        editText = (EditText) findViewById(R.id.ed);
-        button =  (Button) findViewById(R.id.button);
+        EditText editText = (EditText) findViewById(R.id.ed);
+
+        Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText  t = (EditText) findViewById(R.id.ed);
+                EditText t = (EditText) findViewById(R.id.ed);
                 String ip = t.getText().toString();
                 t = (EditText) findViewById(R.id.ed2);
                 int port = Integer.parseInt(t.getText().toString());
-                model.connect(ip,port);
+                viewModel.connectVM(ip, port);
             }
         });
 
 
-
-        seekBarThrottle = (SeekBar) findViewById(R.id.seekBarThrottle);
+        SeekBar seekBarThrottle = (SeekBar) findViewById(R.id.seekBarThrottle);
         seekBarThrottle.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Double myProgress = ((double) (progress)) / 100;
                 System.out.println("Throttle is " + myProgress);
-                model.setThrottle(myProgress);
+                viewModel.setThrottle(myProgress);
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
             }
         });
 
-        seekBarRudder = (SeekBar) findViewById(R.id.seekBarRudder);
+        SeekBar seekBarRudder = (SeekBar) findViewById(R.id.seekBarRudder);
         seekBarRudder.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                Double myProgress = ((double) (progress) * 2 - 100) / 100;
+                double myProgress = ((double) (progress) * 2 - 100) / 100;
                 System.out.println("rudder is " + myProgress);
 //                progressBar.setProgress(progress);
                 textView.setText("" + myProgress + "%");
-                model.setRudder(myProgress);
+                viewModel.setRudder(myProgress);
             }
 
             @Override
@@ -92,54 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-//        setContentView(new Joystick(this));
 
 
     }
 }
-/*import androidx.appcompat.app.AppCompatActivity;
-
-import android.graphics.ColorSpace;
-import android.os.Bundle;
-import android.widget.ProgressBar;
-import android.widget.SeekBar;
-
-
-public class MainActivity extends AppCompatActivity {
-    private ProgressBar progressBar;
-    private SeekBar seekBar;
-    private Model model;
-   // private Joystick joystick;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        model= new Model();
-        model.connect();
-        //joystick = new Joystick(this,200,200,30,100);
-
-        seekBar = (SeekBar) findViewById(R.id.seekBar);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
-
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressBar.setProgress(progress);
-                double mypro = ((double)progress*2 - 100)/100;
-                model.setVar(mypro);
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-    }
-}*/
