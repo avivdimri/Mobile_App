@@ -5,31 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".View.MainActivity">
+    tools:context=".View.MainActivity"
+    tools:ignore="ExtraText"
+    android:background="@drawable/airplane">
 
-    <!--<TextView
-        android:id="@+id/ip"
-        android:layout_width="67dp"
-        android:layout_height="52dp"
-
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="37dp"
-        android:layout_marginRight="257dp"
-        android:text="IP"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/port"
-        android:layout_width="98dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginTop="121dp"
-        android:text="PORT"
-        android:textSize="30sp" /-->
 
     <EditText
         android:id="@+id/ed"
@@ -73,17 +52,9 @@
         android:layout_marginStart="93dp"
         android:layout_marginLeft="93dp"
         android:layout_marginTop="172dp"
-        android:text="CONNECT"
-        android:textSize="30dp"
+        android:text="@string/connect"
+        android:textSize="30sp"
         />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="98dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="221dp"
-        android:text="0%"
-        android:textSize="30sp" />
 
     <SeekBar
         android:id="@+id/seekBarRudder"

@@ -3,7 +3,7 @@ import com.example.myapplication.Model.Model;
 
 // The View model of the application part of the MVVM architecture
 public class ViewModel {
-    private Model model;
+    private final Model model;
 
     //constructor gets model
     public ViewModel(Model m){

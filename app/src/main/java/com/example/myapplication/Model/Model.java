@@ -17,13 +17,16 @@ public class Model {
     public Model() {
         executor = Executors.newSingleThreadExecutor(); // single thread pool
         isConnect = false;
+        mySocket = null;
     }
 
     // The function gets string and value which represent a setting to thr FG
     public void setAttribute(double var, String str) {
         executor.execute(() -> {
-            out.print(str + var + "\r\n");
-            out.flush();
+            if (mySocket != null) {
+                out.print(str + var + "\r\n");
+                out.flush();
+            }
         });
     }
 
@@ -32,15 +35,16 @@ public class Model {
     public void connect(String ip, int port) {
         executor.execute(() -> {
             try {
-                mySocket = new Socket(ip, port);
+                this.mySocket = new Socket(ip, port);
                 out = new PrintWriter(mySocket.getOutputStream(), true);
                 //  initialize the attributes only once
                 if (!isConnect) {
                     isConnect = true;
                     setAttribute(0, "set /controls/flight/aileron ");
                     setAttribute(0, "set /controls/flight/elevator ");
-                    setAttribute(0.1, "set /controls/flight/rudder ");
+                    setAttribute(0.04, "set /controls/flight/rudder ");
                     setAttribute(0, "set /controls/engines/current-engine/throttle ");
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();

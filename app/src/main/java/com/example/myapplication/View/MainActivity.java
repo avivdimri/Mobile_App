@@ -10,6 +10,9 @@ import android.widget.TextView;
 import com.example.myapplication.Model.Model;
 import com.example.myapplication.R;
 import com.example.myapplication.ViewModel.ViewModel;
+
+import java.io.IOException;
+
 // The main view of the application part of the MVVM architecture
 public class MainActivity extends AppCompatActivity {
     private ViewModel viewModel;
@@ -29,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
             viewModel.setElevator((e * 2 - 500) / 360);
         };
 
-        TextView textView = (TextView) findViewById(R.id.textView);
         EditText editText = (EditText) findViewById(R.id.ed);
         Button button = (Button) findViewById(R.id.button);
 
@@ -38,8 +40,15 @@ public class MainActivity extends AppCompatActivity {
             EditText t = (EditText) findViewById(R.id.ed);
             String ip = t.getText().toString();
             t = (EditText) findViewById(R.id.ed2);
-            int port = Integer.parseInt(t.getText().toString());
-            viewModel.connectVM(ip, port);
+            try {
+                int port = Integer.parseInt(t.getText().toString());
+                viewModel.connectVM(ip, port);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
         });
 
         //The vertical SeekBar responsible on the Throttle
