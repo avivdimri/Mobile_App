@@ -1,7 +1,8 @@
 # Mobile_App
 
 Link to github-https://github.com/avivdimri/Mobile_App.git
-Link for the presentation of Mobile App- 
+Link for the presentation of Mobile App- https://www.youtube.com/watch?v=WmdxuVWwlyw
+
 A mobile app which connects to FlightGear simulator and control on the airplane with slider and joystic controler movement.
 
 General Description
