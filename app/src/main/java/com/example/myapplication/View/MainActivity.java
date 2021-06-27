@@ -16,6 +16,7 @@ import java.io.IOException;
 // The main view of the application part of the MVVM architecture
 public class MainActivity extends AppCompatActivity {
     private ViewModel viewModel;
+    private Joystick joystick;
 
     @Override
     // create the views
@@ -25,14 +26,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Joystick view
-        Joystick joystick = (Joystick) findViewById(R.id.myJoystick);
+        joystick = (Joystick) findViewById(R.id.myJoystick);
         // data binding when change the joystick
         joystick.myOnChange = (a, e) -> {
             viewModel.setAileron((a * 2 - 500) / 360);
             viewModel.setElevator((e * 2 - 500) / 360);
         };
 
-        EditText editText = (EditText) findViewById(R.id.ed);
         Button button = (Button) findViewById(R.id.button);
 
         // data binding when the button is pressed connect to the FG
