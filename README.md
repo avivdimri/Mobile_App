@@ -11,6 +11,9 @@ This program controls an aircraft within the "[FlightGear]" (https://www.flightg
 simulator as a client.
 The client will send the command that he gets from the user by the joystick or the slider
 
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/80414213/123548662-64a76b00-d76e-11eb-8bfe-b958234a7556.png">
+
+
 ### Collaborators
 This program was developed by Ori Abramnovich & Aviv Dimri CS students from Bar-Ilan university, Israel.
 
