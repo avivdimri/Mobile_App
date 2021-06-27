@@ -16,6 +16,7 @@ This program was developed by Ori Abramnovich & Aviv Dimri CS students from Bar-
 The Mobile app has been programmed by the MVVM design, as we used Java data binding mechanism,and xml.
 
 ## Features:
+
 ###### Slider:
 
 
@@ -25,3 +26,6 @@ Using a vertical slider, which can control on the speed by the throttle attribut
 
 ###### Joystic:
 A small joystic that control the movement of the plane during the flight.
+
+##### Connection:
+A button when is clicked the app connects to the simulator by the ip and port the user enter in the 2 edit text above.
